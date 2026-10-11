@@ -22,7 +22,8 @@ final class LetterWP_Stats_Admin {
 
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		foreach ( LetterWP_Campaigns::types() as $type ) {
+		// Campaigns too: an add-on registers that post type later, on init.
+		foreach ( array( 'post', LetterWP_Campaigns::TYPE ) as $type ) {
 			add_filter( 'manage_' . $type . '_posts_columns', array( $this, 'columns' ) );
 			add_action( 'manage_' . $type . '_posts_custom_column', array( $this, 'cell' ), 10, 2 );
 		}

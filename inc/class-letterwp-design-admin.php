@@ -236,6 +236,7 @@ final class LetterWP_Design_Admin {
 					<p class="description"><?php esc_html_e( 'Links, categories and buttons: the Read more button and any Buttons block in a post.', 'letterwp' ); ?></p>
 				<?php self::section_close(); ?>
 
+				<?php if ( LetterWP_Email_Design::credit_locked() ) : ?>
 				<?php self::section_open( __( 'Footer', 'letterwp' ) ); ?>
 					<label class="letterwp-check-field">
 						<input type="checkbox" checked disabled />
@@ -251,6 +252,7 @@ final class LetterWP_Design_Admin {
 						?>
 					</p>
 				<?php self::section_close(); ?>
+				<?php endif; ?>
 
 				<?php
 				/**

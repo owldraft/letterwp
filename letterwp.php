@@ -3,7 +3,7 @@
  * Plugin Name:       LetterWP
  * Plugin URI:        https://letterwp.com
  * Description:       Publish a post and it goes out as a beautiful email, through your own Resend account. Your list stays in your own WordPress.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Owldraft
@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LETTERWP_VERSION', '1.0.0' );
+define( 'LETTERWP_VERSION', '1.0.1' );
 define( 'LETTERWP_FILE', __FILE__ );
 define( 'LETTERWP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LETTERWP_URL', plugin_dir_url( __FILE__ ) );

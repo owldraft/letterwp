@@ -130,7 +130,9 @@ final class LetterWP_Email_Design {
 		$design['button_text_color'] = self::is_light( $design['brand_color'] ) ? '#15171a' : '#ffffff';
 
 		// The footer credit is how the free plugin is paid for.
-		$design['credit'] = true;
+		if ( self::credit_locked() ) {
+			$design['credit'] = true;
+		}
 
 		/**
 		 * Filters the design every newsletter is built with.
@@ -139,6 +141,11 @@ final class LetterWP_Email_Design {
 		 * @param array|null $override Unsaved values from the screen, or null.
 		 */
 		return apply_filters( 'letterwp_email_design', $design, $override );
+	}
+
+	/** @return bool The footer credit is always on. LetterWP Pro turns this off. */
+	public static function credit_locked() {
+		return (bool) apply_filters( 'letterwp_credit_locked', true );
 	}
 
 	/** @return bool Dark text reads better than white on this colour. */

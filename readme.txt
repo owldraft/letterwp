@@ -4,7 +4,7 @@ Tags: newsletter, email, subscribers, resend, post notification
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,9 @@ The copy of LetterWP downloaded from letterwp.com checks `https://letterwp.com/u
 letterwp.com [Terms](https://letterwp.com/terms/) and [Privacy Policy](https://letterwp.com/privacy-policy/).
 
 == Changelog ==
+
+= 1.0.1 =
+* Ready for LetterWP Pro: campaigns get the Email column on their list, and Pro can turn the footer credit off.
 
 = 1.0.0 =
 * First public release.
