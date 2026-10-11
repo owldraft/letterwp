@@ -1,0 +1,154 @@
+/* LetterWP on the site: the subscribe form and the account page. Little of
+   its own, so the theme's fonts, colours and buttons show through. */
+
+/* The email row: a white field with the button inside it. Block options set
+   --letterwp-radius, --letterwp-button-bg and --letterwp-button-color; the
+   button falls back to the theme's --accent, then black. */
+.letterwp-row {
+	--letterwp-pad: .375em;
+	display: flex;
+	align-items: stretch;
+	gap: var(--letterwp-pad);
+	box-sizing: border-box;
+	max-width: 100%;
+	margin: 0;
+	padding: var(--letterwp-pad);
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, .14);
+	border-radius: var(--letterwp-radius, 12px);
+	/* Sized by its own width, not the screen's: a sidebar is narrow on any screen. */
+	container-type: inline-size;
+}
+.letterwp-row:focus-within { border-color: rgba(0, 0, 0, .4); box-shadow: 0 0 0 3px rgba(0, 0, 0, .08); }
+.letterwp-size-small .letterwp-row { --letterwp-pad: .25em; font-size: .875em; }
+/* Themes often fix every field and button at one height (48px is common), which
+   would keep the small form as tall as the normal one. Small lets its own
+   padding set the height instead; normal and large keep the theme's height. */
+.letterwp-size-small .letterwp-row .letterwp-input { height: auto; }
+.letterwp-size-small .letterwp-row .wp-element-button { min-height: 0; }
+.letterwp-size-large .letterwp-row { --letterwp-pad: .5em; font-size: 1.125em; }
+
+.letterwp-row .letterwp-input {
+	flex: 1 1 auto;
+	min-width: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: .55em .75em;
+	font: inherit;
+	line-height: 1.3;
+	color: #1e1e1e;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	outline: 0;
+}
+.letterwp-row .letterwp-input::placeholder { color: #757575; opacity: 1; }
+/* Signed in: the form stays, greyed, with the reader's email in it. */
+.letterwp-row:has(.letterwp-input:disabled) { background: #f6f7f7; }
+.letterwp-row .letterwp-input:disabled { color: #757575; -webkit-text-fill-color: #757575; opacity: 1; cursor: default; }
+
+.letterwp-row .wp-element-button {
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5em;
+	margin: 0;
+	padding: .55em 1.1em;
+	font: inherit;
+	font-weight: 600;
+	line-height: 1.3;
+	white-space: nowrap;
+	color: var(--letterwp-button-color, #fff);
+	background: var(--letterwp-button-bg, var(--accent, #000));
+	border: 0;
+	border-radius: max(0px, calc(var(--letterwp-radius, 12px) - var(--letterwp-pad)));
+	box-shadow: none;
+	cursor: pointer;
+}
+.letterwp-row .wp-element-button:hover,
+.letterwp-row .wp-element-button:focus-visible { opacity: .88; }
+.letterwp-row .wp-element-button:disabled { opacity: .6; cursor: default; }
+.letterwp-icon { flex: none; width: 1.1em; height: 1.1em; }
+/* Never stacked: too narrow for the words, the button is just the paper
+   plane. The words stay for screen readers. */
+@container (max-width: 18em) {
+	/* Square: as wide as the row is tall. A theme's fixed button height
+	   sets that through aspect-ratio; without one (the small size) the
+	   height is the field's own, 2.4em, so min-width matches it. */
+	.letterwp-row .wp-element-button { padding: 0; aspect-ratio: 1; min-width: 2.4em; }
+	.letterwp-row .wp-element-button > span {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+}
+.letterwp-hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.letterwp-subscribe__heading { margin: 0 0 .4em; }
+.letterwp-subscribe__text { margin: 0 0 .75em; }
+
+/* The reply after a submit, as a notice rather than a loose line: a tinted box
+   with an icon, green when it worked, red when it did not. Tints are mixed
+   into transparent, so the box reads on a white page and on a dark cover. */
+.letterwp-subscribe__message {
+	--letterwp-tone: #1a7f37;
+	display: flex;
+	align-items: flex-start;
+	gap: .6em;
+	margin: 0 0 .75em;
+	padding: .75em 1em;
+	line-height: 1.45;
+	/* A wash of the text colour under the tint: barely there on a light page,
+	   and on a dark cover (light text) it lifts the box off the photo. */
+	background:
+		linear-gradient(color-mix(in srgb, var(--letterwp-tone) 9%, transparent), color-mix(in srgb, var(--letterwp-tone) 9%, transparent)),
+		color-mix(in srgb, currentColor 4%, transparent);
+	border: 1px solid color-mix(in srgb, var(--letterwp-tone) 40%, transparent);
+	border-radius: var(--letterwp-radius, 12px);
+}
+.letterwp-subscribe__message[hidden] { display: none; }
+.letterwp-subscribe__message::before {
+	content: "";
+	flex: 0 0 auto;
+	width: 1.2em;
+	height: 1.2em;
+	margin-top: .125em;
+	background: var(--letterwp-tone);
+	-webkit-mask: var(--letterwp-icon) center / contain no-repeat;
+	mask: var(--letterwp-icon) center / contain no-repeat;
+	--letterwp-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m9 12 2 2 4-4'/%3E%3C/svg%3E");
+}
+.letterwp-subscribe__message.letterwp-error { --letterwp-tone: #b32d2e; color: inherit; }
+.letterwp-subscribe__message.letterwp-error::before {
+	--letterwp-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4M12 16h.01'/%3E%3C/svg%3E");
+}
+/* Small print under the form: consent, terms, privacy. */
+.letterwp-subscribe__note,
+.letterwp-subscribe__status { margin: .75em 0 0; font-size: .8125em; line-height: 1.5; opacity: .75; }
+.letterwp-subscribe__note a { color: inherit; text-decoration: underline; }
+/* Signed in: the account link, right under the small print. */
+.letterwp-subscribe__note + .letterwp-subscribe__status { margin-top: .25em; }
+.letterwp-subscribe__status[hidden] { display: none; }
+.letterwp-error { color: #b32d2e; }
+
+.letterwp-account__names { display: grid; grid-template-columns: repeat(auto-fit, minmax(10em, 1fr)); gap: 0 1em; }
+.letterwp-account__names p { margin: 0 0 1em; }
+.letterwp-account__names label { display: block; margin-bottom: .25em; }
+.letterwp-account__names input { box-sizing: border-box; width: 100%; }
+.letterwp-account fieldset { margin: 0 0 1em; padding: 0; border: 0; }
+.letterwp-account legend { margin-bottom: .5em; padding: 0; }
+.letterwp-account fieldset label { display: block; margin: .25em 0; }
+.letterwp-link {
+	padding: 0;
+	font: inherit;
+	background: none;
+	border: 0;
+	cursor: pointer;
+}
+.letterwp-account__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5em; }
+.letterwp-signout { color: #b32d2e; }

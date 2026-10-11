@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "letterwp/subscribe",
+	"title": "Subscribe",
+	"category": "widgets",
+	"icon": "email",
+	"description": "A heading, a line, an email field and a button, with small print below for consent. Readers confirm by email, then they get every new post.",
+	"keywords": [ "newsletter", "email", "signup", "form" ],
+	"textdomain": "letterwp",
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"headingLevel": { "type": "number", "enum": [ 1, 2, 3, 4, 5, 6 ], "default": 2 },
+		"text": { "type": "string", "default": "" },
+		"note": { "type": "string", "default": "" },
+		"button": { "type": "string", "default": "" },
+		"size": { "type": "string", "enum": [ "small", "normal", "large" ], "default": "normal" },
+		"radius": { "type": "number" },
+		"maxWidth": { "type": "number" },
+		"buttonBackground": { "type": "string" },
+		"buttonColor": { "type": "string" }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": { "margin": true, "padding": true },
+		"color": { "background": true, "text": true },
+		"typography": { "fontSize": true }
+	},
+	"editorScript": "file:./editor.js",
+	"style": "letterwp-front",
+	"viewScript": "letterwp-subscribe"
+}
