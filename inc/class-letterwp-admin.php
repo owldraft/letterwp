@@ -1131,6 +1131,7 @@ final class LetterWP_Admin {
 					<p class="description"><?php esc_html_e( 'Every subscriber is in it, and every newsletter is sent to it.', 'letterwp' ); ?></p>
 				</td>
 			</tr>
+			<?php if ( LetterWP_Setup::category_topics() || $status['announce'] ) : ?>
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Topics', 'letterwp' ); ?></th>
 				<td>
@@ -1176,6 +1177,7 @@ final class LetterWP_Admin {
 					<p class="description"><?php esc_html_e( 'One topic per category. Everyone gets every topic until they turn one off on the unsubscribe page. A post is sent under its category\'s topic. New, renamed and deleted categories update Resend by themselves.', 'letterwp' ); ?></p>
 				</td>
 			</tr>
+			<?php endif; ?>
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Unsubscribe links', 'letterwp' ); ?></th>
 				<td>

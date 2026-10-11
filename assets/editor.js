@@ -119,6 +119,10 @@
 		}, [ catIds.join( ',' ) ] ) || [];
 		var picked = meta[ cfg.metaTopic ] || 0;
 
+		if ( ! cfg.topics ) {
+			return { cats: [], topic: null }; // Every subscriber gets every post.
+		}
+
 		return { cats: cats, topic: cats.filter( function ( c ) { return c.id === picked; } )[ 0 ] || cats[ 0 ] };
 	}
 

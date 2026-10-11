@@ -117,6 +117,10 @@ final class LetterWP_Editor {
 			return LetterWP_Setup::ANNOUNCE;
 		}
 
+		if ( ! LetterWP_Setup::category_topics() ) {
+			return 0; // Every subscriber gets every post.
+		}
+
 		$cats   = wp_get_post_categories( $post_id, array( 'orderby' => 'name' ) );
 		$picked = (int) get_post_meta( $post_id, self::META_TOPIC, true );
 
@@ -472,6 +476,7 @@ final class LetterWP_Editor {
 					'metaSend'     => self::META_SEND,
 					'metaTopic'    => self::META_TOPIC,
 					'campaign'     => LetterWP_Campaigns::TYPE === $screen->post_type,
+					'topics'       => LetterWP_Setup::category_topics(),
 					'announce'     => LetterWP_Setup::ANNOUNCE,
 					'announceName' => LetterWP_Setup::announcements_label(),
 				)

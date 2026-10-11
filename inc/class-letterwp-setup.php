@@ -129,6 +129,15 @@ final class LetterWP_Setup {
 		return self::links()['segment'];
 	}
 
+	/**
+	 * @return bool One topic per category, so readers pick the categories
+	 *              they get. Off in LetterWP: every subscriber gets every
+	 *              post. LetterWP Pro turns it on with this filter.
+	 */
+	public static function category_topics() {
+		return (bool) apply_filters( 'letterwp_category_topics', false );
+	}
+
 	/** @return string The topic a post in this category goes out under, or ''. */
 	public static function topic_id( $term_id ) {
 		$topics = self::links()['topics'];
@@ -187,8 +196,12 @@ final class LetterWP_Setup {
 		return $slugs;
 	}
 
-	/** @return WP_Term[] */
+	/** @return WP_Term[] The categories that are topics: none while category_topics() is off. */
 	private static function categories() {
+		if ( ! self::category_topics() ) {
+			return array();
+		}
+
 		$terms = get_terms(
 			array(
 				'taxonomy'   => 'category',
@@ -330,8 +343,9 @@ final class LetterWP_Setup {
 			);
 		}
 
+		// With category topics off, the ones made earlier are left alone, not removed.
 		$orphans = array();
-		foreach ( $links['topics'] as $term_id => $id ) {
+		foreach ( self::category_topics() ? $links['topics'] : array() as $term_id => $id ) {
 			if ( self::ANNOUNCE !== (int) $term_id && ! isset( $terms[ $term_id ] ) && isset( $topics[ $id ] ) ) {
 				$orphans[] = $id;
 			}
@@ -485,8 +499,8 @@ final class LetterWP_Setup {
 			self::save_links( $links );
 		}
 
-		// Topics whose category is gone.
-		foreach ( $links['topics'] as $term_id => $id ) {
+		// Topics whose category is gone (left alone while category topics are off).
+		foreach ( self::category_topics() ? $links['topics'] : array() as $term_id => $id ) {
 			if ( self::ANNOUNCE === (int) $term_id || isset( $terms[ $term_id ] ) ) {
 				continue;
 			}
@@ -551,7 +565,7 @@ final class LetterWP_Setup {
 	public static function sync_category( $term_id ) {
 		$term = get_term( $term_id, 'category' );
 
-		if ( ! self::is_done() || '' === LetterWP_Resend::key() || ! $term instanceof WP_Term ) {
+		if ( ! self::category_topics() || ! self::is_done() || '' === LetterWP_Resend::key() || ! $term instanceof WP_Term ) {
 			return;
 		}
 

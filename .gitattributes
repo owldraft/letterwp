@@ -3,3 +3,4 @@
 .distignore export-ignore
 README.md export-ignore
 LICENSE export-ignore
+bin export-ignore

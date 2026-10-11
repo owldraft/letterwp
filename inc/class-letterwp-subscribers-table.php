@@ -75,7 +75,7 @@ final class LetterWP_Subscribers_Table extends WP_List_Table {
 	}
 
 	public function get_columns() {
-		return array(
+		$columns = array(
 			'cb'         => '<input type="checkbox" />',
 			'email'      => __( 'Email', 'letterwp' ),
 			'name'       => __( 'Name', 'letterwp' ),
@@ -84,6 +84,12 @@ final class LetterWP_Subscribers_Table extends WP_List_Table {
 			'source'     => __( 'Source', 'letterwp' ),
 			'created_at' => __( 'Added', 'letterwp' ),
 		);
+
+		if ( ! LetterWP_Setup::topic_names() ) {
+			unset( $columns['topics'] ); // One list: there is nothing to choose.
+		}
+
+		return $columns;
 	}
 
 	protected function get_sortable_columns() {

@@ -1000,7 +1000,7 @@ final class LetterWP_Email {
 			. ( $web ? ' &nbsp;&middot;&nbsp; <a href="' . esc_url( $p['permalink'] ) . '" style="color:' . self::MUTED . ';text-decoration:underline;">' . esc_html__( 'View in browser', 'letterwp' ) . '</a>' : '' )
 			. '</p>';
 
-		// The credit, which the owner can turn off in Email Design. Its icon is
+		// The credit, always on in LetterWP (LetterWP Pro removes it). Its icon is
 		// a 32px PNG served by this site's own copy of the plugin, so it needs
 		// nothing from letterwp.com; not SVG, which Gmail and Outlook drop.
 		// In the site's own scheme: a send from WP-CLI would otherwise say http.

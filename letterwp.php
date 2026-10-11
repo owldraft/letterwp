@@ -11,6 +11,7 @@
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       letterwp
+ * Update URI:        https://letterwp.com/update/letterwp
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -41,5 +42,11 @@ require_once LETTERWP_DIR . 'inc/class-letterwp-webhook.php';
 require_once LETTERWP_DIR . 'inc/class-letterwp-stats.php';
 require_once LETTERWP_DIR . 'inc/class-letterwp-stats-admin.php';
 require_once LETTERWP_DIR . 'inc/class-letterwp.php';
+
+// Only in the copy from letterwp.com: the WordPress.org build leaves it out.
+if ( is_readable( LETTERWP_DIR . 'inc/class-letterwp-updater.php' ) ) {
+	require_once LETTERWP_DIR . 'inc/class-letterwp-updater.php';
+	new LetterWP_Updater();
+}
 
 LetterWP::instance();

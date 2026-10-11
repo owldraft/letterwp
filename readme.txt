@@ -15,16 +15,16 @@ Publish a post and it goes out as a beautiful email, through your own Resend acc
 LetterWP turns your WordPress posts into a newsletter. Publish a post and every subscriber gets it as an email: the whole post, laid out for the inbox, under your own name and your own domain.
 
 * **Your list, in your WordPress.** Subscribers live in your own database, not on someone else's platform. Import a CSV from anywhere, export it any time.
-* **Your brand.** Your logo, your colour, your domain in the From line. No "Sent with WordPress.com" and no plugin branding in your emails.
+* **Your brand.** Your logo, your colour, your domain in the From line. No "Sent with WordPress.com".
 * **A beautiful email.** Blocks become clean, inbox-safe HTML: images, quotes, buttons, tables, code and video embeds all work in Gmail, Apple Mail and Outlook.
 * **Your own sending account.** Emails go out through your [Resend](https://resend.com) account, so deliverability is yours too. Resend's free plan covers up to 1,000 contacts.
 
 = What it does =
 
-* **Send on publish.** A "Newsletter" panel in the editor: send this post as an email when it is published, pick the topic, send a test to yourself, preview it in a new tab. A post is never sent twice.
+* **Send on publish.** A "Newsletter" panel in the editor: send this post as an email when it is published, send a test to yourself, preview it in a new tab. A post is never sent twice.
 * **Subscribe form.** A Subscribe block and a `[letterwp_subscribe]` shortcode, with double opt-in and spam protection.
-* **Topics per category.** Readers get every category until they turn one off, on your site or on Resend's unsubscribe page.
-* **Reader account page.** Readers sign in with a magic link (no passwords, no WordPress accounts) to change their name, their topics, or unsubscribe.
+* **One list, one click to leave.** Every subscriber gets every post, and the Unsubscribe link in each email works in one click, on your site.
+* **Reader account page.** Readers sign in with a magic link (no passwords, no WordPress accounts) to change their name or unsubscribe.
 * **Subscribers screen.** Search, add, edit and delete subscribers. CSV import (Substack, beehiiv, Ghost, Mailchimp, Kit or any file with an email column) and CSV export.
 * **Two-way sync with Resend.** Unsubscribes, bounces and spam complaints come back to WordPress through a signed webhook.
 * **Email results per post.** Delivered, bounced, marked as spam and unsubscribed, from Resend's events. No open or click tracking.
@@ -64,7 +64,11 @@ Yes. Subscribers > Import/Export takes any CSV file with an email column. Names 
 
 = Does LetterWP add a credit to my emails? =
 
-Not unless you ask it to. You can turn on a small "Newsletter easily with LetterWP" line in LetterWP > Email Design. It is off by default.
+Yes, one small line under the unsubscribe link: "Newsletter easily with LetterWP". It is what keeps LetterWP free. [LetterWP Pro](https://letterwp.com/pricing/) removes it.
+
+= What does LetterWP Pro add? =
+
+Campaigns (emails that are not posts: launches, offers), topics per category so readers pick what they get, the full Email Design (fonts, sizes, buttons, post details, excerpt or full post), no footer credit, and email support. See [letterwp.com/pricing](https://letterwp.com/pricing/).
 
 == External services ==
 
@@ -88,6 +92,12 @@ Resend [Terms of Service](https://resend.com/legal/terms-of-service) and [Privac
 When a post you send has a YouTube or Vimeo embed, LetterWP downloads the video's thumbnail image once, from `https://i.ytimg.com` or `https://i.vimeocdn.com`, and saves a copy on your site so the email can show it. Only the video's thumbnail address is requested; no data about you or your readers is sent.
 
 YouTube: [Terms of Service](https://www.youtube.com/t/terms) and [Google Privacy Policy](https://policies.google.com/privacy). Vimeo: [Terms of Service](https://vimeo.com/terms) and [Privacy Policy](https://vimeo.com/privacy).
+
+= letterwp.com updates =
+
+The copy of LetterWP downloaded from letterwp.com checks `https://letterwp.com/update/letterwp` for a new version, during WordPress's own update check (about twice a day). The request carries the installed version and, like every request WordPress makes, your site's address in its User-Agent. letterwp.com keeps only a one-way hash of that address, to count active installs. The WordPress.org copy does not make this request.
+
+letterwp.com [Terms](https://letterwp.com/terms/) and [Privacy Policy](https://letterwp.com/privacy-policy/).
 
 == Changelog ==
 

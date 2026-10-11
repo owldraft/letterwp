@@ -645,6 +645,7 @@ final class LetterWP_Subscribers_Admin {
 							<?php endif; ?>
 						</td>
 					</tr>
+					<?php if ( LetterWP_Setup::topic_names() ) : ?>
 					<tr>
 						<th scope="row"><?php esc_html_e( 'Topics', 'letterwp' ); ?></th>
 						<td>
@@ -666,6 +667,7 @@ final class LetterWP_Subscribers_Admin {
 							<p class="description"><?php esc_html_e( 'One topic per category, and Announcements for campaigns once one is sent. Everyone gets every topic unless they turn one off: unchecked means no emails for posts in that category, or no campaigns.', 'letterwp' ); ?></p>
 						</td>
 					</tr>
+					<?php endif; ?>
 					<tr>
 						<th scope="row"><?php esc_html_e( 'At Resend', 'letterwp' ); ?></th>
 						<td><?php $this->resend_status( $row ); ?></td>

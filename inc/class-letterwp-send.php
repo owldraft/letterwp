@@ -119,7 +119,7 @@ final class LetterWP_Send {
 			return new WP_Error( 'letterwp_password', __( 'Password-protected posts are not emailed.', 'letterwp' ) );
 		}
 
-		if ( $term ) {
+		if ( $term && LetterWP_Setup::category_topics() ) {
 			if ( ! in_array( (int) $term, array_map( 'intval', wp_get_post_categories( $post_id ) ), true ) ) {
 				return new WP_Error( 'letterwp_bad_topic', __( 'That topic is not one of this post\'s categories.', 'letterwp' ) );
 			}
@@ -186,7 +186,7 @@ final class LetterWP_Send {
 		} elseif ( '' === $topic && $campaign ) {
 			/* translators: %s: Resend's error message, or nothing. */
 			$error = trim( sprintf( __( 'The Announcements topic could not be made at Resend. %s', 'letterwp' ), $why ) );
-		} elseif ( '' === $topic ) {
+		} elseif ( '' === $topic && $term ) {
 			$error = __( 'This post\'s category has no topic at Resend yet. Run LetterWP → Setup → 3. Your list in Resend.', 'letterwp' );
 		} elseif ( '' === $from ) {
 			$error = __( 'Set the newsletter email address in LetterWP → Setup → 4. Sender addresses first.', 'letterwp' );
@@ -201,7 +201,7 @@ final class LetterWP_Send {
 		);
 
 		if ( null === $error ) {
-			$count = LetterWP_Subscribers::count_for_topic( $term );
+			$count = $term || $campaign ? LetterWP_Subscribers::count_for_topic( $term ) : LetterWP_Subscribers::counts()['active'];
 			$email = LetterWP_Email::build( $post, array( 'mode' => 'send' ) );
 			$id    = LetterWP_Resend::send_broadcast(
 				array(

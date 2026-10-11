@@ -1,7 +1,7 @@
 <?php
 /**
- * How every newsletter looks: the header logo, the site name, one brand
- * colour and the footer credit. One set for every email.
+ * How every newsletter looks: the header logo, the site name and one brand
+ * colour. One set for every email, with the footer credit always on.
  *
  * The template has more settings than the screen shows (fonts, sizes,
  * which post details show, full post or excerpt). They keep their
@@ -90,8 +90,8 @@ final class LetterWP_Email_Design {
 			'date'              => true,
 			'content'           => 'full',
 			'read_more'         => '',
-			// Off until the site owner turns it on: their emails, their call.
-			'credit'            => false,
+			// Always on in LetterWP: see get(). LetterWP Pro removes it.
+			'credit'            => true,
 		);
 	}
 
@@ -128,6 +128,9 @@ final class LetterWP_Email_Design {
 		$design['link_color']        = $design['brand_color'];
 		$design['button_color']      = $design['brand_color'];
 		$design['button_text_color'] = self::is_light( $design['brand_color'] ) ? '#15171a' : '#ffffff';
+
+		// The footer credit is how the free plugin is paid for.
+		$design['credit'] = true;
 
 		/**
 		 * Filters the design every newsletter is built with.
