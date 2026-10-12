@@ -236,24 +236,6 @@ final class LetterWP_Design_Admin {
 					<p class="description"><?php esc_html_e( 'Links, categories and buttons: the Read more button and any Buttons block in a post.', 'letterwp' ); ?></p>
 				<?php self::section_close(); ?>
 
-				<?php if ( LetterWP_Email_Design::credit_locked() ) : ?>
-				<?php self::section_open( __( 'Footer', 'letterwp' ) ); ?>
-					<label class="letterwp-check-field">
-						<input type="checkbox" checked disabled />
-						<?php esc_html_e( 'Show "Newsletter easily with LetterWP"', 'letterwp' ); ?>
-					</label>
-					<p class="description">
-						<?php
-						printf(
-							/* translators: %s: link to LetterWP Pro. */
-							esc_html__( 'A small line under the unsubscribe link, linking to letterwp.com. It keeps LetterWP free. %s removes it.', 'letterwp' ),
-							'<a href="https://letterwp.com/pricing/" target="_blank" rel="noopener noreferrer">' . esc_html__( 'LetterWP Pro', 'letterwp' ) . '</a>'
-						);
-						?>
-					</p>
-				<?php self::section_close(); ?>
-				<?php endif; ?>
-
 				<?php
 				/**
 				 * Fires inside the Email Design form, after LetterWP's own

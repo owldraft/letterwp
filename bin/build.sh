@@ -27,6 +27,8 @@ case "$KIND" in
 		# The bootstrap's updater block: from its comment to the closing brace.
 		sed -i '/^\/\/ Only in the copy from letterwp.com/,/^}$/d' "$TMP/letterwp/letterwp.php"
 		php -l "$TMP/letterwp/letterwp.php" >/dev/null
+		# The readme's letterwp.com updates section: up to the blank line before the changelog.
+		sed -i '/^= letterwp.com updates =$/,/^== Changelog ==$/{/^== Changelog ==$/!d}' "$TMP/letterwp/readme.txt"
 		;;
 	*) echo "usage: bin/build.sh [wporg]" >&2; exit 1 ;;
 esac

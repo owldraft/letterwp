@@ -4,7 +4,7 @@ Tags: newsletter, email, subscribers, resend, post notification
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,13 +62,13 @@ No. Results come from Resend's delivery events: delivered, bounced, marked as sp
 
 Yes. Subscribers > Import/Export takes any CSV file with an email column. Names and subscribe dates come along when the file has them.
 
-= Does LetterWP add a credit to my emails? =
+= Does LetterWP add a credit or ads to my emails? =
 
-Yes, one small line under the unsubscribe link: "Newsletter easily with LetterWP". It is what keeps LetterWP free. [LetterWP Pro](https://letterwp.com/pricing/) removes it.
+No. Your emails carry your name, your logo and your domain, and nothing else.
 
 = What does LetterWP Pro add? =
 
-Campaigns (emails that are not posts: launches, offers), topics per category so readers pick what they get, the full Email Design (fonts, sizes, buttons, post details, excerpt or full post), no footer credit, and email support. See [letterwp.com/pricing](https://letterwp.com/pricing/).
+Campaigns (emails that are not posts: launches, offers), topics per category so readers pick what they get, the full Email Design (fonts, sizes, buttons, post details, excerpt or full post) and email support. Everything listed above stays free. See [letterwp.com/pricing](https://letterwp.com/pricing/).
 
 == External services ==
 
@@ -100,6 +100,9 @@ The copy of LetterWP downloaded from letterwp.com checks `https://letterwp.com/u
 letterwp.com [Terms](https://letterwp.com/terms/) and [Privacy Policy](https://letterwp.com/privacy-policy/).
 
 == Changelog ==
+
+= 1.0.2 =
+* No footer credit in emails.
 
 = 1.0.1 =
 * Ready for LetterWP Pro: campaigns get the Email column on their list, and Pro can turn the footer credit off.
